@@ -79,167 +79,218 @@ def salir():
 
 @app.route("/volver",methods=["GET","POST"])
 def volver():
-    return redirect("/servicios")
+    if nom!="":
+        return redirect("/servicios")
+    else:
+        return redirect("/ingreso")
 
 @app.route("/servicios", methods=["GET"])
 def servicios():
-    return render("servicios.html",nom=nom,rol=rol)
+    if nom!="":
+        return render("servicios.html",nom=nom,rol=rol)
+    else:
+        return redirect("/ingreso")
 
 @app.route("/servicios/dash", methods=["GET"])
 def dash():
-    return render("dashboard.html",nom=nom,rol=rol)
-#//////////////////////phphphphp
+    if nom!="":
+        return render("dashboard.html",nom=nom,rol=rol)
+    else:
+        return redirect("/ingreso")
+
+#//////////////////////phphphphprrr
 
 #ruta que muestra perfil de usuario
 @app.route("/usuarios/<id_usuario>", methods=["GET"])
 def info_usuario(id_usuario):
-    if id_usuario in usuarios:
-        return render("pusuario.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    if nom!="":
+        if id_usuario in usuarios:
+            return render("pusuario.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+        else:
+            return f"error, el usuario {id_usuario} no existe"
     else:
-        return f"error, el usuario {id_usuario} no existe"
+        return redirect("/ingreso")
 
 #renderizar pagina edusuario
 @app.route("/usuario/editar", methods=["GET"])
 def editar_usuario():
-    return render("edusuario.html",nom=nom,rol=rol,usuarios=usuarios,resultadoed=resultadoed)
+    if nom!="":
+        return render("edusuario.html",nom=nom,rol=rol,usuarios=usuarios,resultadoed=resultadoed)
+    else:
+        return redirect("/ingreso")
 
 #busqueda usuario para editar
 @app.route("/busuarioe",methods=["POST"])
 def busuarioe():
-    global resultadoed,busquedaed
-    busquedaed=""
-    busquedaed=request.form["buscar"]
-    #return f"{busqueda}"
-    if busquedaed in usuarios:
-        resultadoed=usuarios[busquedaed]
-        return redirect("/usuario/editar")
+    if nom != "":
+        global resultadoed,busquedaed
+        busquedaed=""
+        busquedaed=request.form["buscar"]
+        #return f"{busqueda}"
+        if busquedaed in usuarios:
+            resultadoed=usuarios[busquedaed]
+            return redirect("/usuario/editar")
+        else:
+            return "no encontrado"
     else:
-        return "no encontrado"
+        return redirect("/ingreso")
 
 @app.route("/gedicion",methods=["POST"])
 def gedicion():
-    
     global busquedaed,resultadoed,nom
-    nombre=request.form["nom"]    
-    usu=request.form["usu"] 
-    tdoc=request.form["tdoc"] 
-    clav=request.form["clav"] 
-    foto=request.form["foto"] 
-    rol=request.form["rol"]
+    if nom != "":
+        nombre=request.form["nom"]    
+        usu=request.form["usu"] 
+        tdoc=request.form["tdoc"] 
+        clav=request.form["clav"] 
+        foto=request.form["foto"] 
+        rol=request.form["rol"]
 
-    if usu == busquedaed:
-        usuarios[usu]['nombre']=nombre
-        usuarios[usu]['td']=tdoc
-        usuarios[usu]['clave']=clav
-        usuarios[usu]['foto']=foto
-        usuarios[usu]['rol']=rol
-        nom=usu
-        resultadoed=""
-        busquedaed=""
-        return redirect("/usuario/editar")
-        
-    else:
-        if usu in usuarios:
-            return"usuario existe"
-        else:
-            nom=usu
-            usuarios[usu]=usuarios.pop(busquedaed)
+        if usu == busquedaed:
             usuarios[usu]['nombre']=nombre
-            usuarios[usu]['usuario']=usu
             usuarios[usu]['td']=tdoc
             usuarios[usu]['clave']=clav
             usuarios[usu]['foto']=foto
             usuarios[usu]['rol']=rol
+            nom=usu
             resultadoed=""
             busquedaed=""
             return redirect("/usuario/editar")
+            
+        else:
+            if usu in usuarios:
+                return"usuario existe"
+            else:
+                nom=usu
+                usuarios[usu]=usuarios.pop(busquedaed)
+                usuarios[usu]['nombre']=nombre
+                usuarios[usu]['usuario']=usu
+                usuarios[usu]['td']=tdoc
+                usuarios[usu]['clave']=clav
+                usuarios[usu]['foto']=foto
+                usuarios[usu]['rol']=rol
+                resultadoed=""
+                busquedaed=""
+                return redirect("/usuario/editar")
+    else:
+        return redirect("/ingreso")
              
 
 @app.route("/salvar",methods=["POST"])
 def salvar():
-    nombre=request.form["nom"]    
-    usu=request.form["usu"] 
-    tdoc=request.form["tdoc"] 
-    clav=request.form["clav"] 
-    foto=request.form["foto"] 
-    rol=request.form["rol"] 
-    usuarios.setdefault(usu,{'nombre':nombre,'usuario':usu,'td':tdoc,'clave':clav,'foto':foto,'rol':rol})
-    return redirect("/servicios")
+    if nom != "":
+        nombre=request.form["nom"]    
+        usu=request.form["usu"] 
+        tdoc=request.form["tdoc"] 
+        clav=request.form["clav"] 
+        foto=request.form["foto"] 
+        rol=request.form["rol"] 
+        usuarios.setdefault(usu,{'nombre':nombre,'usuario':usu,'td':tdoc,'clave':clav,'foto':foto,'rol':rol})
+        return redirect("/servicios")
+    else:
+        return redirect("/ingreso")
 
 @app.route("/usuario/buscar",methods=["GET"])
 def busuario():
-    return render("busuarios.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    if nom!="":
+        return render("busuarios.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    else:
+        return redirect("/ingreso")
 
 @app.route("/buscar",methods=["POST"])
 def buscar():
-    global resultado
-    busqueda=""
-    busqueda=request.form["buscar"]
-    if busqueda in usuarios:
-        resultado=usuarios[busqueda]
-        return redirect("/usuario/buscar")
+    if nom!="":
+        global resultado
+        busqueda=""
+        busqueda=request.form["buscar"]
+        if busqueda in usuarios:
+            resultado=usuarios[busqueda]
+            return redirect("/usuario/buscar")
+        else:
+            return "no encontrado"
     else:
-        return "no encontrado"
+        return redirect("/ingreso")
 
 #Ruta para renderizar pagina de visualizar usuarios
 @app.route("/usuarios/visualizar", methods=["GET"])
 def vusuarios():
-    return render("vusuarios.html",nom=nom,rol=rol,usuarios=usuarios)
+    if nom!="":
+        return render("vusuarios.html",nom=nom,rol=rol,usuarios=usuarios)
+    else:
+        return redirect("/ingreso")
 
 #render al pagina eusuario
 @app.route("/usuario/eliminar", methods=["GET"])
 def eusuario():
-    return render("eusuario.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    if nom!="":    
+        return render("eusuario.html",nom=nom,rol=rol,usuarios=usuarios,        resultado=resultado)
+    else:
+        return redirect("/ingreso")
 
-"busca usuario a eliminar"
+#busca usuario a eliminar
 @app.route("/eliminar",methods=["POST"])
 def eliminar():
-    global resultado, busqueda
-    busqueda=""
-    busqueda=request.form["buscar"]
-    if busqueda in usuarios:
-        resultado=usuarios[busqueda]
-        return redirect("/usuario/eliminar")
+    if nom!="":
+        global resultado, busqueda
+        busqueda=""
+        busqueda=request.form["buscar"]
+        if busqueda in usuarios:
+            resultado=usuarios[busqueda]
+            return redirect("/usuario/eliminar")
+        else:
+            return "no encontrado"
     else:
-        return "no encontrado"
+        return redirect("/ingreso")
 
 #elimina usuario seleccionado
 @app.route("/eliminar2",methods=["POST"])
 def eliminar2():
-    global busqueda,resultado
-    if busqueda!=nom:
-        usuarios.pop(busqueda)
-        busqueda=""
-        resultado=""
-        return redirect("/usuario/eliminar")
+    if nom!="":
+        global busqueda,resultado
+        if busqueda!=nom:
+            usuarios.pop(busqueda)
+            busqueda=""
+            resultado=""
+            return redirect("/usuario/eliminar")
+        else:
+            return"no se puede eliminar usuario logueado"
     else:
-        return"no se puede eliminar usuario logueado"
+        return redirect("/ingreso")
 
 @app.route("/usuario/crear", methods=["GET"])
 def cusuario():
-    return render("cusuario.html",nom=nom,rol=rol,usuarios=usuarios)
+    if nom !="":
+        return render("cusuario.html",nom=nom,rol=rol,usuarios=usuarios)
+    else:
+        return redirect("/ingreso")
 
 #renderiza pagina cambio de contraseña
 @app.route("/usuario/cambiar_password",methods=["GET"])
 def cbiopwd():
-    return render("cbiopwd.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    if nom !="":
+        return render("cbiopwd.html",nom=nom,rol=rol,usuarios=usuarios,resultado=resultado)
+    else:
+        return redirect("/ingreso")
 
 #Realiza el cambio de contraseña
 @app.route("/cbiopwdok",methods=["POST"])
 def cbiopwdok():
     global nom
-    cactual=request.form["cactual"] 
-    #return f"{cactual}{nom}"
-    if cactual == usuarios[nom]["clave"]:
-        cnueva=request.form["cnueva"] 
-        ccnueva=request.form["ccnueva"] 
-        if cnueva==ccnueva:
-            usuarios[nom]["clave"]=cnueva
+    if nom !="":
+        cactual=request.form["cactual"] 
+        #return f"{cactual}{nom}"
+        if cactual == usuarios[nom]["clave"]:
+            cnueva=request.form["cnueva"] 
+            ccnueva=request.form["ccnueva"] 
+            if cnueva==ccnueva:
+                usuarios[nom]["clave"]=cnueva
+            else:
+                return "no coinciden las contraseñas"
         else:
-            return "no coinciden las contraseñas"
+            return "contraseña actual incorrecta"
+        return redirect("/servicios")
     else:
-        return "contraseña actual incorrecta"
-    return redirect("/servicios")
+        return redirect("/ingreso")
 
 #rutas sin usar
 # @app.route("/perfil", methods=["GET","POST"])
