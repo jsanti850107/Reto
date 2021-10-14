@@ -1,0 +1,38 @@
+{% extends "servicios.html" %}
+{% block title %}Perfil de usuario{% endblock %}
+{% block contentimg %}
+<br><br><br>
+
+<div><form action="" method="POST">
+    <table  align="center">
+    <div>
+    <tr><td><label for="nom">Nombre: </label></td><td><input type="text" name="nom" id="" disabled="true" placeholder={{usuarios[nom]['nombre']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="usu">Usuario: </label></td><td><input type="text" name="usu" id="" disabled="true"  placeholder={{usuarios[nom]['usuario']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="tdoc">Tipo Documento: </label></td><td><input type="text" name="tdoc" id="" disabled="true" placeholder={{usuarios[nom]['td']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="clav">Contraseña: </label></td><td><input type="password" name="clav" id="" disabled="true" placeholder={{usuarios[nom]['clave']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="foto">Foto: </label></td><td><input type="text" name="foto" id="" disabled="true" placeholder={{usuarios[nom]['foto']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="rol">Rol:</label></td><td><input type="text" name="rol" id="" disabled="true" placeholder={{usuarios[nom]['rol']}}></td></tr>
+    </div>
+    <br>
+    </table>
+</form></div>
+<div align="center"><form action="/volver" method="GET">
+    <tr><td><input type="submit" value="volver"></td></tr>
+</form>
+</div> 
+{% endblock %}

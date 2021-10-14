@@ -1,0 +1,44 @@
+{% extends "servicios.html" %}
+{% block title %}Perfil de usuario{% endblock %}
+{% block contentimg %}
+<br><br><br>
+<div><form action="/busuarioe" method="POST">
+    <table  align="center">
+    <div>
+    <tr><td><label for="buscar">Usuario a Editar: </label></td><td><input type="search" name="buscar" id=""></td></tr>
+    </div>    
+</form></div>
+{% if resultadoed != "" %}
+    
+    <div><form action="/gedicion" method="POST">
+    <table  align="center">
+    <div>
+    <tr><td><label for="nom">Nombre: </label></td><td><input type="text" name="nom" id="" value={{resultadoed['nombre']}}></td></tr>
+    </div>
+    <br>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="usu">Usuario: </label></td><td><input type="text" name="usu" id="" value={{resultadoed['usuario']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="tdoc">Tipo Documento: </label></td><td><input type="text" name="tdoc" id="" value={{resultadoed['td']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="clav">Contraseña: </label></td><td><input type="password" name="clav" id="" value={{resultadoed['clave']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="foto">Foto: </label></td><td><input type="text" name="foto" id="" value={{resultadoed['foto']}}></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="rol">Rol:</label></td><td><input type="text" name="rol" id="" value={{resultadoed['rol']}}></td></tr>
+    </div>
+    <br>
+    <tr><td><input type="submit" value="Guardar"></td></tr>
+    </table>
+{% endif %}
+{% endblock %}

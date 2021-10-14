@@ -1,0 +1,23 @@
+{% extends "servicios.html" %}
+{% block title %}Modificar Usuario{% endblock %}
+{% block contentimg %}
+<br><br><br>
+<div><form action="/buscar" method="POST">
+    <table  align="center">
+    <div>
+    <tr><td><label for="buscar">Usuario a Buscar: </label></td><td><input type="search" name="buscar" id=""></td></tr>
+    </div>
+    {% if resultado != "" %}
+        <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+            <tr>
+                <th>Usuario</th><th>Nombre</th><th>Tipo de documento</th><th>Contraseña</th><th>Rol</th>
+                <tr><td>{{resultado.usuario }}</td><td>{{resultado.nombre }}</td><td>{{resultado.td }}</td><td>{{resultado.clave }}</td><td>{{ resultado.rol }}</td></tr>
+            </tr>
+        </table>
+        <!-- <div>
+            <tr><td><input type="submit" value="Guardar"></td></tr>
+        </div> -->
+        </table>
+    {% endif %}
+</form></div>
+{% endblock %}

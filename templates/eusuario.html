@@ -1,0 +1,25 @@
+{% extends "servicios.html" %}
+{% block title %}Eliminar usuario{% endblock %}
+{% block contentimg %}
+{% if rol == "SuperAdmin" %}
+    <br><br><br>
+    <div><form action="/eliminar" method="POST">
+        <table  align="center">
+        <div>
+        <tr><td><label for="buscar">Usuario a eliminar: </label></td><td><input type="search" name="buscar" id=""></td></tr>
+        </div>
+    </form></div>
+    {% if resultado != "" %}
+    <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+        <tr>
+            <th>Usuario</th><th>Nombre</th><th>Tipo de documento</th><th>Contraseña</th><th>Rol</th>
+            <tr><td>{{resultado.usuario }}</td><td>{{resultado.nombre }}</td><td>{{resultado.td }}</td><td>{{resultado.clave }}</td><td>{{ resultado.rol }}</td></tr>
+        </tr>
+    </table>
+    <div align="center"><form action="/eliminar2" method="POST">
+        <tr><td><input type="submit" value="Eliminar"></td></tr>
+    </form>
+    </div> 
+    {% endif %}
+{% endif %}
+{% endblock %}

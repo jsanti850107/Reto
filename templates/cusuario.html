@@ -1,0 +1,37 @@
+{% extends "servicios.html" %}
+{% block title %}Crear usuario{% endblock %}
+{% block contentimg %}
+{% if rol == "SuperAdmin" or rol == "Admin" %}
+    <div><form action="/salvar" method="POST">
+        <table  align="center">
+        <div>
+        <tr><td><label for="nom">Nombre: </label></td><td><input type="text" name="nom" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+        <tr><td><label for="usu">Usuario: </label></td><td><input type="text" name="usu" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+        <tr><td><label for="tdoc">Tipo Documento: </label></td><td><input type="text" name="tdoc" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+        <tr><td><label for="clav">Contraseña: </label></td><td><input type="password" name="clav" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+        <tr><td><label for="foto">Foto: </label></td><td><input type="text" name="foto" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+        <tr><td><label for="rol">Rol:</label></td><td><input type="text" name="rol" id=""></td></tr>
+        </div>
+        <br>
+        <div>
+            <tr><td><input type="submit" value="Guardar"></td></tr>
+        </div>
+        </table>
+    </form></div>
+{% endif %}
+{% endblock %}

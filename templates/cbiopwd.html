@@ -1,0 +1,25 @@
+{% extends "servicios.html" %}
+{% block title %}Cambiar Contraseña{% endblock %}
+{% block contentimg %}
+<br><br><br>
+<div><form action="/cbiopwdok" method="POST">
+    <table  align="center">
+    <div>
+    <tr><td><label for="cactual">Contraseña Actual: </label></td><td><input type="password" name="cactual" id=""></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="cnueva">Contraseña nueva: </label></td><td><input type="password" name="cnueva" id=""></td></tr>
+    </div>
+    <br>
+    <div>
+    <tr><td><label for="ccnueva">Confirmar Contraseña: </label></td><td><input type="password" name="ccnueva" id=""></td></tr>
+    </div>
+    <br>
+    <br>
+    <div>
+        <tr><td><input type="submit" value="Guardar"></td></tr>
+    </div>
+    </table>
+</form></div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "servicios.html" %}
+{% block title %}Visualizar usuario{% endblock %}
+{% block contentimg %}
+<br><br><br>
+{% if rol == "SuperAdmin" %}
+    <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+        <thead>
+            <tr>
+                <th>Usuario</th><th>Nombre</th><th>Tipo de documento</th><th>Contraseña</th><th>Rol</th>
+            </tr>
+        </thead>
+        {% for key, usuario in usuarios.items() %}
+        <tbody>
+            <tr><td>{{usuario.usuario }}</td><td>{{ usuario.nombre }}</td><td>{{ usuario.td }}</td><td>{{ usuario.clave }}</td><td>{{ usuario.rol }}</td></tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    
+{% endif %}
+{% endblock %}
