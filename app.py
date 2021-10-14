@@ -152,7 +152,7 @@ def gedicion():
             usuarios[usu]['clave']=clav
             usuarios[usu]['foto']=foto
             usuarios[usu]['rol']=rol
-            nom=usu
+            #nom=usu
             resultadoed=""
             busquedaed=""
             return redirect("/usuario/editar")
@@ -161,7 +161,6 @@ def gedicion():
             if usu in usuarios:
                 return"usuario existe"
             else:
-                nom=usu
                 usuarios[usu]=usuarios.pop(busquedaed)
                 usuarios[usu]['nombre']=nombre
                 usuarios[usu]['usuario']=usu
@@ -169,6 +168,9 @@ def gedicion():
                 usuarios[usu]['clave']=clav
                 usuarios[usu]['foto']=foto
                 usuarios[usu]['rol']=rol
+                if nom==busquedaed:
+                    nom=usu
+                
                 resultadoed=""
                 busquedaed=""
                 return redirect("/usuario/editar")
