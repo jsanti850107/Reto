@@ -88,7 +88,7 @@ def servicios():
 @app.route("/servicios/dash", methods=["GET"])
 def dash():
     return render("dashboard.html",nom=nom,rol=rol)
-#//////////////////////////
+#//////////////////////ppp
 
 #ruta que muestra perfil de usuario
 @app.route("/usuarios/<id_usuario>", methods=["GET"])
