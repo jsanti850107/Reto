@@ -294,27 +294,122 @@ def cbiopwdok():
     else:
         return redirect("/ingreso")
 
-#rutas sin usar
-# @app.route("/perfil", methods=["GET","POST"])
-# def perfil():
-#     return "perfil"
-
-# @app.route("/producto/<id_producto>", methods=["GET"])
-# def info_producto(id_producto):
-#     try:
-#         id_producto=int(id_producto)
-#     except Exception as e:
-#         id_noticia=0
+#Aqui empieza la funcionalidad del menu de proveedores
     
-#     if id_producto in productos:
-#         return f"estas viendo el producto: {id_producto}"   
-#     else:
-#         return f"error, el usuario {id_producto} no existe"
+#Aqui comienzo la funcion guardar con su ruta
+#Creando diccionario vacio
+proveedores = {}
 
-# @app.route("/productos", methods=["GET"])
-# def productos():
-#     return render("productos.html",nom=nom,rol=rol)
-#hasta aqui   
+#Aqui comienzan la ruta guardar proveedor/render a pagina de creacion
+@app.route("/crear/proveedor")
+def crearPod():
+    return render("crearProvee.html", proveedores = proveedores, nom=nom, rol=rol, usuarios=usuarios)
+
+#Esta es la ruta, más la funcion guardar
+@app.route("/guardar", methods = ["GET","POST"])
+def agregar():
+    #Tomando los datos de la variable pasadas por el input
+    codigo = request.form["codigo"]
+    name = request.form["name"]
+    razonsocial = request.form["razonsocial"]
+    domicilio = request.form["domicilio"]
+    postal = request.form["postal"]
+    localidad = request.form["localidad"]
+    provincia = request.form["provincia"]
+    pais = request.form["pais"]
+    tlf = request.form["tlf"]
+    correo = request.form["correo"]
+    web = request.form["web"]
+    rut = request.form["rut"]
+
+    #Aqui se agregan los datos tomados al diccionario PROVEEDORES
+    proveedores[codigo] = {"nombre": name, "rsocial": razonsocial, "domicilio": domicilio, "postal": postal, "localidad": localidad, "provincia": provincia, "pais": pais, "telefono": tlf, "correo": correo, "web": web, "rut": rut}
+    return redirect("/crear/proveedor")
+
+    #Metodo eliminar
+
+#Ruta plantilla eliminar proveedor
+@app.route("/eliminar/proveedor" )
+def delproveedor():
+    return render("eliminarprovee.html", proveedores = proveedores, nom=nom, rol=rol, usuarios=usuarios)
+
+#Ruta que recibe los parametros y aplica funcion elimninar
+@app.route("/eliminar_proveedor", methods = ["GET","POST"])
+def eliminar_proveedor():
+    dato = request.form["eliminarp"]
+    del (proveedores[dato]) 
+
+    return redirect("/eliminar/proveedor")
+
+#Ruta de busqueda de proveeedor
+@app.route("/buscar/proveedor")
+def buscar_proveedor():
+    return render("buscarprovee.html", busqueda = busqueda, nom=nom, rol=rol, usuarios=usuarios)
+
+busqueda = []
+
+#Funcion buscar proveedor
+@app.route("/buscar_proveedor", methods =["POST"])
+def buscar_prov():
+    global busqueda
+    provee_buscado = ""
+    provee_buscado = request.form["datos"]
+    
+    if provee_buscado in proveedores:
+        busqueda = proveedores[provee_buscado]
+        return redirect("/buscar/proveedor")
+    
+    else:
+        return " Proveedor no encontrado"
+
+#Aqui comienza el editar proveedor
+busqueda2 = []
+provee_buscado2 = ""
+
+
+#Ruta que lleva ala pagina editar
+@app.route("/editar/proveedor")
+def editar_prov():
+    return render("editar_prov.html",  proveedores = proveedores, busqueda2 = busqueda2, nom=nom, rol=rol, usuarios=usuarios)
+
+@app.route("/editar", methods = ["GET","POST"])
+def editar():
+    global busqueda2
+    global provee_buscado2 
+    provee_buscado2 = request.form["datos2"]
+    if provee_buscado2 in proveedores:
+        busqueda2 = proveedores[provee_buscado2]
+
+        return redirect("/editar/proveedor")
+
+    else:
+        return "Proveedor no encontrado"
+
+@app.route("/guardaredit", methods = ["GET", "POST"])
+def guardar_edit():
+
+    #Tomando los datos de la variable pasadas por el input
+    
+    name = request.form["name2"]
+    razonsocial = request.form["razonsocial2"]
+    domicilio = request.form["domicilio2"]
+    postal = request.form["postal2"]
+    localidad = request.form["localidad2"]
+    provincia = request.form["provincia2"]
+    pais = request.form["pais2"]
+    tlf = request.form["tlf2"]
+    correo = request.form["correo2"]
+    web = request.form["web2"]
+    rut = request.form["rut2"]
+
+    #Aqui se agregan los valores editados a proveedores
+    proveedores[provee_buscado2] = {"nombre": name, "rsocial": razonsocial, "domicilio": domicilio, "postal": postal, "localidad": localidad, "provincia": provincia, "pais": pais, "telefono": tlf, "correo": correo, "web": web, "rut": rut}
+    return redirect("/editar/proveedor")
+
+@app.route("/proveedores")
+def list_proveedores():
+    return render("resultado.html", proveedores = proveedores, nom=nom, rol=rol, usuarios=usuarios)
+
 
 if __name__== "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
