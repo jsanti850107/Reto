@@ -20,6 +20,7 @@ productos={
     2:"Taos",
     3:"T-Cross TSI",
     4:"Gol",
+    4:"Renold4",
 }
 
 #declaracion de variables
