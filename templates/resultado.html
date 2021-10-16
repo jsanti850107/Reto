@@ -1,0 +1,47 @@
+{% extends "servicios.html" %}
+
+
+{% block title %} Visualizar {% endblock %}
+
+{% block contentimg %}
+<br>
+<br>
+<br>
+<div id="tabla">
+    <table>
+        <thead>
+            <tr>
+                <th>Cod</th>
+                <th>Nombre</th>
+                <th>Razón Social</th>
+                <th>Domicilio</th>
+                <th>Código Postal</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Pais</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Web</th>
+                <th>Rut</th>
+            </tr>
+        </thead>
+        {% for key, value in proveedores.items() %}
+        <tr>
+            <td>{{key}}</td>
+            <td>{{value.nombre}}</td>
+            <td>{{value.rsocial}}</td>
+            <td>{{value.domicilio}}</td>
+            <td>{{value.postal}}</td>
+            <td>{{value.localidad}}</td>
+            <td>{{value.provincia}}</td>
+            <td>{{value.pais}}</td>
+            <td>{{value.telefono}}</td>
+            <td>{{value.correo}}</td>
+            <td>{{value.web}}</td>
+            <td>{{value.rut}}</td> <br>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

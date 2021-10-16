@@ -1,0 +1,53 @@
+{% extends "servicios.html" %}
+
+{% block title %} Buscar Proveedor {% endblock %}
+
+{% block contentimg %}
+    <br>
+    <br>
+    <br>
+    <div id="buscar">
+        <form action="/buscar_proveedor", method="POST">
+            <label>Buscar: </label><input type="search" name="datos">
+        
+        
+        <input type="submit" value="Buscar">
+        </form>
+    </div>
+    <div class="tabla">
+        <table align="center">
+        
+            <tr>
+                <th>Cod</th>
+                <th>Nombre</th>
+                <th>Razón Social</th>
+                <th>Domicilio</th>
+                <th>Código Postal</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Pais</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Web</th>
+                <th>Rut</th>
+            </tr>
+            <tr>
+                <td>{{key}}</td>
+                <td>{{busqueda["nombre"]}}</td>
+                <td>{{busqueda["rsocial"]}}</td>
+                <td>{{busqueda["domicilio"]}}</td>
+                <td>{{busqueda["postal"]}}</td>
+                <td>{{busqueda["localidad"]}}</td>
+                <td>{{busqueda["provincia"]}}</td>
+                <td>{{busqueda["pais"]}}</td>
+                <td>{{busqueda["telefono"]}}</td>
+                <td>{{busqueda["correo"]}}</td>
+                <td>{{busqueda["web"]}}</td>
+                <td>{{busqueda["rut"]}}</td> <br>
+            </tr>
+            
+        </table>
+        
+    </div>
+
+{% endblock %}

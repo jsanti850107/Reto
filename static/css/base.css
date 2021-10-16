@@ -293,6 +293,111 @@ footer{
 }
 
 
+.datos_usuarios{
+    list-style-type: none;
+}
+
+#contenido{
+    width: calc(100% - 150px);
+    height: 100%;
+    margin-top: 41px;
+    background-color: rgb(228, 244, 255);
+    position: unset;
+    float: right;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#tabla{
+    margin: 150px auto;
+    width: 600px;
+    transform: translate(-200px, 0%);
+}
+
+#tabla table{
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    
+
+}
+
+#tabla th, td{
+    padding: 15px;
+}
+
+#tabla thead{
+    background-color: #1f6099;
+    border-bottom: solid 5px #b8b8b8;
+    color: white;
+}
+
+#tabla tr:nth-child(even){
+    background-color: #ddd;
+}
+
+#tabla tr:hover td{
+    background-color: #063358;
+    color: white;
+}
+
+
+
+.formulario{
+    display: flex;
+    overflow: hidden;
+    padding: 10px;
+    flex-direction: column;
+    margin-left: 50%;
+}
+
+.formulario div{
+    margin-top: 20px;
+    width: 100px;
+}
+
+.formulario fieldset{
+    width: 300px;
+    padding: 20px;
+    align-content: center;
+}
+
+
+.formulario.label{
+    margin-top: 10px;
+    width: 80px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.observaciones{
+    width: 100%;
+}
+.observaciones textarea{
+    width: 296%;
+    max-width: 296%;
+    min-width: 296%;   
+}
+
+.Resultado{
+    margin-top: 20%;
+}
+
+#buscar{
+    margin-left: 70%;
+}
+
+
 
 
 
