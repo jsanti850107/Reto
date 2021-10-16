@@ -1,0 +1,44 @@
+{% extends "servicios.html" %}
+{% block title %}buscar producto{% endblock %}
+{% block contentimg %}
+<br><br><br>
+<div>
+    <form action="/busqucar" method="POST">
+        <table align="center">
+            <div>
+                <tr>
+                    <td><label for="buscar"> Buscar: </label></td>
+                    <td><input type="search" name="bus_p" id=""></td>
+                </tr>
+            </div>
+            {% if resultado != "" %}
+            <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+
+                <tr>
+                    <th>Nombre</th>
+                    <th>Referencia</th>
+                    <th>Descrp</th>
+                    <th>CantRequerida</th>
+                    <th>CantBodega</th>
+                    <th>Proveedor</th>
+                    <th>PrecioProd</th>
+                </tr>
+                <tr>
+                    <td>{{busquedaprod["nomtxt"]}}</td>
+                    <td>{{busquedaprod["ref"]}}</td>
+                    <td>{{busquedaprod["destxt"]}}</td>
+                    <td>{{busquedaprod["num2"]}}</td>
+                    <td>{{busquedaprod["num1"]}}</td>
+                    <td>{{busquedaprod["prov"]}}</td>
+                    <td>{{busquedaprod["precio"]}}</td>
+                </tr>
+
+            </table>
+            <!-- <div>
+            <tr><td><input type="submit" value="Guardar"></td></tr>
+        </div> -->
+        </table>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

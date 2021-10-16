@@ -303,7 +303,7 @@ proveedores = {}
 
 #Aqui comienzan la ruta guardar proveedor/render a pagina de creacion
 @app.route("/crear/proveedor")
-def crearPod():
+def crearProve():
     return render("crearProvee.html", proveedores = proveedores, nom=nom, rol=rol, usuarios=usuarios)
 
 #Esta es la ruta, más la funcion guardar
@@ -410,6 +410,91 @@ def guardar_edit():
 @app.route("/proveedores")
 def list_proveedores():
     return render("resultado.html", proveedores = proveedores, nom=nom, rol=rol, usuarios=usuarios)
+
+#//////////////////////////////AgregarProd/////////////////////////////
+#ruta1
+@app.route("/crear/producto")
+def crearPod():
+    return render("agregarProducto.html",nom=nom,rol=rol,usuarios=usuarios,productos=productos)
+#crear  lista de productos
+productos= {}
+#creo ruta2 
+@app.route("/crear", methods = ["POST","GET"])
+#funcion agregar
+def crearProducto():
+    nombre= request.values["nomtxt"]
+    referencia= request.values["ref"]
+    descrp= request.values["destxt"]
+    cantRequerida= request.values["num2"]
+    cantBodega= request.values["num1"]
+    proveedor= request.values["prov"]
+    precioProd= request.values["precio"]
+    productos[referencia]= {"ref":referencia,"nomtxt": nombre, "destxt": descrp, "num2": cantRequerida, "num1": cantBodega, "prov": proveedor, "precio":precioProd}
+    #return redirect(productos)
+    return redirect("/crear/producto")
+
+#Ruta visualizar productos
+@app.route("/productos")
+def visualizar():
+    return render("visualizar.html",nom=nom,rol=rol,usuarios=usuarios,productos=productos)   
+
+#///////////////////////////////buscar///////////////////////
+@app.route("/buscar/producto")
+def busprod():
+    return render("buscarprod.html",nom=nom,rol=rol,usuarios=usuarios,busquedaprod=busquedaprod,referenciaprod=referenciaprod)
+referenciaprod=""
+busquedaprod=[]
+@app.route("/busqucar", methods = ["POST","GET"])
+def buscarp():
+    global busquedaprod
+    referenciaprod=request.form["bus_p"]
+
+    if referenciaprod in productos:
+        busquedaprod=productos[referenciaprod]
+        return redirect("/buscar/producto")
+    else:
+        return "producto no encontrado"
+#////////////////////////////////////////Eliminar Producto/////////////////////////////////
+#general
+@app.route("/eliminar/producto", methods = ["POST","GET"])
+def eliminarprod():
+    return render("eliminarprod.html",nom=nom,rol=rol,usuarios=usuarios,productos=productos)
+#ruta de html//acion//
+@app.route("/eliminarp", methods = ["POST","GET"])
+def eliminarp():
+    prod = request.form["eliproduc"]
+    del (productos[prod])
+    return redirect ("/eliminar/producto") 
+    
+#/////////////////////////////Editar Producto///////////////////////////////////////////////
+#Ruta que lleva ala pagina editar
+busqueda3 = []
+prod_buscado2 = ""
+@app.route("/editar/producto")
+def editar_prod():
+    return render("editarProducto.html",productos = productos, busqueda3 = busqueda3, nom=nom, rol=rol, usuarios=usuarios)
+
+@app.route("/editarprod", methods = ["GET","POST"])
+def edit_prod():
+    global busqueda3
+    global prod_buscado2 
+    prod_buscado2 = request.form["edi_p"]
+    if prod_buscado2 in productos:
+        busqueda3 = productos[prod_buscado2]
+        return redirect("/editar/producto")
+    else:
+        return "Proveedor no encontrado"
+@app.route("/guardarprod", methods = ["GET", "POST"])
+def guaredit_prod():
+    nombre= request.values["nomtxt2"]
+    referencia= request.values["ref2"]
+    descrp= request.values["destxt2"]
+    cantRequerida= request.values["num22"]
+    cantBodega= request.values["num12"]
+    proveedor= request.values["prov2"]
+    precioProd= request.values["precio2"]
+    productos[prod_buscado2]= {"ref":referencia,"nomtxt": nombre, "destxt": descrp, "num2": cantRequerida, "num1": cantBodega, "prov": proveedor, "precio":precioProd}
+    return redirect("/editar/producto")
 
 
 if __name__== "__main__":

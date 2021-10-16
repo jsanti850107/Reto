@@ -1,0 +1,30 @@
+
+    {% extends "servicios.html" %}
+{% block title %}Visualizar usuario{% endblock %}
+{% block contentimg %}
+<br><br><br>
+{% if rol == "SuperAdmin" %}
+    <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+        <thead>
+            <tr>
+                <th>Nombre</th><th>Referencia</th><th>Descrp</th><th>CantRequerida</th><th>CantBodega</th> <th>Proveedor</th><th>PrecioProd</th>
+            </tr>
+        </thead>
+        {% for key, value in productos.items() %}
+        <tbody>
+            <tr>
+                <td>{{value.nomtxt}}</td>
+                <td>{{key}}</td>
+                <td>{{value.destxt}}</td>
+                <td>{{value.num2}}</td>
+                <td>{{value.num1}}</td>
+                <td>{{value.prov}}</td>
+                <td>{{value.precio}}</td>
+                
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
+    

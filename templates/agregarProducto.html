@@ -1,0 +1,70 @@
+
+    
+    
+{% extends "servicios.html" %}
+{% block title %}Crear producto{% endblock %}
+{% block contentimg %}
+{% if rol == "SuperAdmin" or rol == "Admin" %}
+    <form class="formulario" id="formulario" name="formulario" method="POST" action="/crear" onsubmit="return verificar();">
+        <div class="fil">
+            <h1>Agregar Producto</h1>
+        </div>
+        
+        <script src="../static/js/agregarProducto.js"></script> 
+
+        <div class="b"><br>
+        <hr><br>
+        </div>
+
+        <div class="fil">
+            <label>Foto:</label>
+            <!-- <input type="file" id="img-preview" accept="image/*"> -->
+            <!-- <img id="img-uploader"> -->
+        </div>
+
+
+        <div class="fil">
+            <label>Nombre:</label>
+            <input type="text" name="nomtxt" id="nomtxt">
+
+            <label>Referencia:</label>
+            <input type="number" name="ref" id="ref">
+        </div>
+
+        <div class="fil">
+            <label>Descripcion:</label>
+            <textarea name="destxt" id="destxt" placeholder="color,tamaño,peso,funcionalidad,año,ect"></textarea>
+        </div>
+
+        <div class="fil">
+            <label>Cantidad en bodega:</label>
+            <input type="number" name="num1" id="num1" d min="1">
+            <label> Min:</label>
+            <input type="number" name="num2" id="num2" min="1">
+        </div>
+
+        <div class="fil">
+            <label>proveedor:</label>
+            <input type="text" name="prov" id="prov">
+        </div>
+
+        <div class="fil">
+            <label>precio del prod:</label>
+            <input type="text" name="precio" id="precio">
+        </div>
+
+        <div class="b"><br>
+         <hr><br>
+        </div>
+        <!-- botones -->
+        <div class="fil">
+            <input type="submit" id="btnagr" name="btnagr" onclick="agregar_producto() " value="Agregar">
+            <a href="#" id="brncan">Cancelar </a>
+        </div>
+        <div class="b"><br>
+            <hr><br>
+        </div>
+    </form>
+{% endif %}
+{% endblock %}
+</body>

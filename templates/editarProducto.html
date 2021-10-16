@@ -1,0 +1,106 @@
+
+{% extends "servicios.html" %}
+{% block title %}Editar producto{% endblock %}
+{% block contentimg %}
+<br><br><br>
+<div>
+    <form action="/editarprod" method="POST">
+        <table align="center">
+            <div>
+                <tr>
+                    <td><label for="buscar"> Buscar por Referencia: </label></td>
+                    <td><input type="search" name="edi_p" id=""></td>
+                </tr>
+            </div>
+            {% if resultado != "" %}
+            <table align="center" cellspacing="2" cellpadding="20" border="1" bgcolor=dddddd>
+
+                <tr>
+                    <th>Nombre</th>
+                    <th>Referencia</th>
+                    <th>Descrp</th>
+                    <th>CantRequerida</th>
+                    <th>CantBodega</th>
+                    <th>Proveedor</th>
+                    <th>PrecioProd</th>
+                </tr>
+                <tr>
+                    <td>{{busqueda3["nomtxt"]}}</td>
+                    <td>{{busqueda3["ref"]}}</td>
+                    <td>{{busqueda3["destxt"]}}</td>
+                    <td>{{busqueda3["num2"]}}</td>
+                    <td>{{busqueda3["num1"]}}</td>
+                    <td>{{busqueda3["prov"]}}</td>
+                    <td>{{busqueda3["precio"]}}</td>
+                </tr>
+
+            </table>
+            <!-- <div>
+            <tr><td><input type="submit" value="Guardar"></td></tr>
+        </div> -->
+        </table>
+        {% endif %}
+    </form>
+</div>
+
+<form class="formulario" id="formulario" name="formulario" method="POST" action="/guardarprod">
+    <div class="fil">
+        <h1>Agregar Producto</h1>
+    </div>
+    
+
+    <div class="b"><br>
+    <hr><br>
+    </div>
+
+    <div class="fil">
+        <label>Foto:</label>
+        <!-- <input type="file" id="img-preview" accept="image/*"> -->
+        <!-- <img id="img-uploader"> -->
+    </div>
+
+
+    <div class="fil">
+        <label>Nombre:</label>
+        <input type="text" name="nomtxt2" id="nomtxt" value="{{busqueda3["nomtxt"]}}">
+
+        <label>Referencia:</label>
+        <input type="number" name="ref2" id="ref" value="{{busqueda3["ref"]}}">
+    </div>
+
+    <div class="fil">
+        <label>Descripcion:</label>
+        <textarea name="destxt2" id="destxt" placeholder=""value="{{busqueda3["destxt"]}}"></textarea>
+    </div>
+
+    <div class="fil">
+        <label>Cantidad en bodega:</label>
+        <input type="number" name="num12" id="num1" d min="1"value="{{busqueda3["num1"]}}">
+        <label> Min:</label>
+        <input type="number" name="num22" id="num2" min="1" value="{{busqueda3["num2"]}}">
+    </div>
+
+    <div class="fil">
+        <label>proveedor:</label>
+        <input type="text" name="prov2" id="prov"value="{{busqueda3["prov"]}}">
+    </div>
+
+    <div class="fil">
+        <label>precio del prod:</label>
+        <input type="text" name="precio2" id="precio"value="{{busqueda3["precio"]}}">
+    </div>
+
+    <div class="b"><br>
+     <hr><br>
+    </div>
+    <!-- botones -->
+    <div class="fil">
+        <input type="submit" id="btnagr" name="btnagr"  value="Editar">
+        <a href="#" id="brncan">Cancelar </a>
+    </div>
+    <div class="b"><br>
+        <hr><br>
+    </div>
+</form>
+{% endblock %}
+
