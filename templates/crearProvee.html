@@ -6,73 +6,82 @@
 
 
 
-<div class="formulario">
-    <h1>CREAR PROVEEDORES</h1>
-    <form id="limpiarform" action="/guardar" method="POST">
-        <fieldset>
-
-            <div>
-            <label>Cod: </label><input type="number" name="codigo">
-            </div>
-            
-            <div>
-            <label>Nombre: </label><input type="text" name="name">
-            </div>
-
-            <div>
-            <label>Razon social: </label><input type="text" name="razonsocial">
-            </div>
-
-            <div>
-            <label>Domicilio: </label><input type="text" name="domicilio">
-            </div>
-
-            <div>
-            <label>Codigo Postal: </label><input type="number" name="postal">
-            </div>
-    
-            <div>
-            <label>Localidad: </label><input type="text" name="localidad">
-            </div>
-
-            <div>
-            <label>Provincia: </label><input type="text" name="provincia">
-            </div>
-
-            <div>
-            <label>País: </label><input type="text" name="pais">
-            </div>
-
-            <div>
-            <label>Teléfono: </label><input type="number" name="tlf">
-            </div>
-
-            <div>
-            <label>Email: </label><input type="email" name="correo">
-            </div>
-
-            <div>
-                <label>Web: </label><input type="text" name="web">
-            </div>
-
-            <div>
-                <label>RUT: </label><input type="text" name="rut">
-            </div>
-
-            <div class="observaciones">
-                <label>Observaciones: </label><Textarea></Textarea>
-            </div>
-
-            <input class="btn" type="submit"/>
-
-        </fieldset>
-        
-            
+<div class="content-form-proveedor">
+    <h1>Crear Proveedor</h1>
 
 
+    <div class="formulario-wrapper">
+        <div class="proveedores-form">
+            <form id="limpiarform" action="/guardar" method="POST">
+                <p>
+                    <label>Cod: </label>
+                    <input type="number" name="codigo">
+                </p>
 
-            
-    </form>
+                <p>
+                    <label>Nombre: </label>
+                    <input type="text" name="name">
+                </p>
+                
+                <p>
+                    <label>Razon social: </label>
+                    <input type="text" name="razonsocial">
+                </p>
+
+                <p>
+                    <label>Domicilio: </label>
+                    <input type="text" name="domicilio">
+                </p>
+
+                <p>
+                    <label>Codigo Postal: </label>
+                    <input type="text" name="postal">
+                </p>
+
+                <p>
+                    <label>Localidad: </label>
+                    <input type="text" name="localidad">
+                </p>
+
+                <p>
+                    <label>Provincia: </label>
+                    <input type="text" name="provincia">
+                </p>
+
+                <p>
+                    <label>País: </label>
+                    <input type="text" name="pais">
+                </p>
+
+                <p>
+                    <label>Teléfono: </label>
+                    <input type="tel" name="tlf">
+                </p>
+
+                <p>
+                    <label>Email: </label>
+                    <input type="email" name="correo">
+                </p>
+
+                <p>
+                    <label>Web: </label>
+                    <input type="text" name="web">
+                </p>
+
+                <p>
+                    <label>RUT: </label>
+                    <input type="text" name="rut">
+                </p>
+
+                <p class="block">
+                    <label>Observaciones: </label><Textarea></Textarea>
+                </p>
+                <p class="block">
+                <input class="btn" type="submit" value="Guardar"/>
+                </p>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
     document.getElementById("limpiarform").reset();

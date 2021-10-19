@@ -17,6 +17,7 @@
     <input type="submit" value="Editar">
 </div>
 <div class="tabla">
+    <!-- {% if busqueda2 != "" %} -->
     <table align="center">
 
         <tr>
@@ -52,65 +53,77 @@
 
 </div>
 
+<div class="content-form-proveedor">
+    <h1>Editar Proveedor</h1>
 
-<div class="formulario">
-    <h1>CREAR PROVEEDORES</h1>
-    <form id="limpiarform" action="/guardaredit" method="POST">
-        
-        <fieldset>
 
-            <div>
-                <label>Nombre: </label><input type="text" name="name2" value="{{busqueda2["nombre"]}}">
-            </div>
+    <div class="formulario-wrapper">
+        <div class="proveedores-form">
+            <form id="limpiarform" action="/guardaredit" method="POST">
+                <p>
+                    <label>Nombre: </label>
+                    <input type="text" name="name2" value="{{busqueda2["nombre"]}}">
+                </p>
 
-            <div>
-                <label>Razon social: </label><input type="text" name="razonsocial2" value="{{busqueda2["rsocial"]}}">
-            </div>
+                <p>
+                    <label>Razon social: </label>
+                    <input type="text" name="razonsocial2" value="{{busqueda2["rsocial"]}}">
+                </p>
 
-            <div>
-                <label>Domicilio: </label><input type="text" name="domicilio2" value="{{busqueda2["domicilio"]}}">
-            </div>
+                <p>
+                    <label>Domicilio: </label>
+                    <input type="text" name="domicilio2" value="{{busqueda2["domicilio"]}}">
+                </p>
 
-            <div>
-                <label>Codigo Postal: </label><input type="number" name="postal2" value="{{busqueda2["postal"]}}">
-            </div>
+                <p>
+                    <label>Codigo Postal: </label>
+                    <input type="text" name="postal2" value="{{busqueda2["postal"]}}">
+                </p>
 
-            <div>
-                <label>Localidad: </label><input type="text" name="localidad2" value="{{busqueda2["localidad"]}}">
-            </div>
+                <p>
+                    <label>Localidad: </label>
+                    <input type="text" name="localidad2" value="{{busqueda2["localidad"]}}">
+                </p>
 
-            <div>
-                <label>Provincia: </label><input type="text" name="provincia2" value="{{busqueda2["provincia"]}}">
-            </div>
+                <p>
+                    <label>Provincia: </label>
+                    <input type="text" name="provincia2" value="{{busqueda2["provincia"]}}">
+                </p>
 
-            <div>
-                <label>País: </label><input type="text" name="pais2" value="{{busqueda2["pais"]}}">
-            </div>
+                <p>
+                    <label>País: </label>
+                    <input type="text" name="pais2" value="{{busqueda2["pais"]}}">
+                </p>
 
-            <div>
-                <label>Teléfono: </label><input type="number" name="tlf2" value="{{busqueda2["telefono"]}}">
-            </div>
+                <p>
+                    <label>Teléfono: </label>
+                    <input type="tel" name="tlf2" value="{{busqueda2["telefono"]}}">
+                </p>
 
-            <div>
-                <label>Email: </label><input type="email" name="correo2" value="{{busqueda2["correo"]}}">
-            </div>
+                <p>
+                    <label>Email: </label>
+                    <input type="email" name="correo2" value="{{busqueda2["correo"]}}">
+                </p>
 
-            <div>
-                <label>Web: </label><input type="text" name="web2" value="{{busqueda2["web"]}}">
-            </div>
+                <p>
+                    <label>Web: </label>
+                    <input type="text" name="web2" value="{{busqueda2["web"]}}">
+                </p>
 
-            <div>
-                <label>RUT: </label><input type="text" name="rut2" value="{{busqueda2["rut"]}}">
-            </div>
+                <p>
+                    <label>RUT: </label>
+                    <input type="text" name="rut2" value="{{busqueda2["rut"]}}">
+                </p>
 
-            <div class="observaciones2">
-                <label>Observaciones: </label><Textarea></Textarea>
-            </div>
-
-            <input class="btn" type="submit"  value="Guardar cambios"/>
-
-        </fieldset>
-    </form>
+                <p class="block">
+                    <label>Observaciones: </label><Textarea></Textarea>
+                </p>
+                <p class="block">
+                <input class="btn" type="submit" value="Guardar cambios"/>
+                </p>
+            </form>
+        </div>
+    </div>
 </div>
-
+<!-- {% endif %} -->
 {% endblock %}

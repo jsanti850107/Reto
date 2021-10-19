@@ -1,5 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+
+
 body{
     background-color: white;
+    
 }
 
 
@@ -90,6 +96,7 @@ body{
     padding: 0;
     margin: 0;
     margin-top: 41px;
+    z-index: 100;
     
 }
 
@@ -297,38 +304,42 @@ footer{
     list-style-type: none;
 }
 
-#contenido{
+#content{
     width: calc(100% - 150px);
     height: 100%;
     margin-top: 41px;
-    background-color: rgb(228, 244, 255);
-    position: unset;
     float: right;
-    right: 0;
+    position: absolute;
+    transform: translate(150px, 0);
+    
+    
+    
+    /* position: unset;
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 0;
-    overflow: hidden;
-}
-
-#tabla{
-    margin: 150px auto;
-    width: 600px;
-    transform: translate(-200px, 0%);
+    overflow: hidden; */
 }
 
 #tabla table{
     background-color: white;
-    width: 100%;
     text-align: left;
     border-collapse: collapse;
+    position: fixed;
+    overflow-x: scroll;
+    transform: translate(10px, 0);
+    ;
     
 
 }
 
-#tabla th, td{
+#tabla th{
     padding: 15px;
+}
+
+#tabla td{
+    padding: 5px;
 }
 
 #tabla thead{
@@ -346,9 +357,90 @@ footer{
     color: white;
 }
 
+ /* AQUI ES EL DISEÑO DEL FORMULARIO EDITAR */
+.content-form-proveedor{
+    max-width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1.5em;
+}
 
+.content-form-proveedor h1{
+    text-align: center;
+}
 
-.formulario{
+.formulario-wrapper{
+    box-shadow: 0 0 20px rgba(92, 91, 91, 0.685) ;
+    border-radius: 30px;
+}
+
+.formulario-wrapper >*{
+    padding: 1em;
+}
+
+.proveedores-form{
+    background-color: rgb(53, 71, 116);
+    color: white;
+    border-radius: 30px;
+}
+
+.proveedores-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.proveedores-form .block{
+grid-column: 1/3;
+} 
+
+.proveedores-form p{
+    margin: 0;
+    padding: 0.5em;
+}
+
+.proveedores-form form button, .proveedores-form input, .proveedores-form form textarea{
+    width: 100%;
+    padding: .7em;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: inset 1px 5px 20px rgba(63, 63, 65, 0.671);
+}
+
+.proveedores-form form .btn{
+    box-shadow: none;
+    background-color: rgb(38, 82, 201);
+    color: white;
+    padding: 1em;
+}
+.proveedores-form form .btn:hover{
+    background-color: rgb(43, 73, 172);
+   
+}
+
+/* large screen */
+@media (min-width: 700PX){
+    body{
+       padding: 0 4rem; 
+    }
+
+    .proveedores-form form{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .proveedores-form .block{
+        grid-column: 3/3;
+        
+    }
+}
+/* AQUI TERMINA EL DISEÑO DEL FORMULARIO EDITAR PROVEEDORES */
+
+/* .formulario-content{
+    display: block;
+    align-content: center;
+
+    
     display: flex;
     overflow: hidden;
     padding: 10px;
@@ -356,22 +448,26 @@ footer{
     margin-left: 50%;
 }
 
-.formulario div{
+.formulario-content div{
     margin-top: 20px;
     width: 100px;
+    margin-right: 20px;
 }
 
-.formulario fieldset{
+
+
+.formulario-content fieldset{
+    display: flex;
     width: 300px;
     padding: 20px;
     align-content: center;
 }
 
 
-.formulario.label{
+.formulario-content.label{
     margin-top: 10px;
     width: 80px;
-}
+} */
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -380,18 +476,18 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-.observaciones{
+/* .observaciones{
     width: 100%;
 }
 .observaciones textarea{
-    width: 296%;
-    max-width: 296%;
-    min-width: 296%;   
-}
+    width: auto;
+    max-width: auto;
+    min-width: auto   
+} */
 
 .Resultado{
     margin-top: 20%;
-}
+} 
 
 #buscar{
     margin-left: 70%;
